@@ -1,33 +1,33 @@
 version: '3'
 
 networks:
-  halvonik-api:
+  macrosoft-api:
 
 services:
-  halvonik-php:
+  macrosoft-php:
     build:
       context: .
       dockerfile: config/docker/Dockerfile
-    image: ppsdocker/halvonik-php-sw
-    container_name: HalvonikPhp
+    image: ppsdocker/macrosoft-php-sw
+    container_name: MacrosoftPhp
     expose:
       - 9000
     networks:
-      - halvonik-api
+      - macrosoft-api
     depends_on:
       - db
     volumes:
       - ./src:/var/www/html
 
-  halvonik-web:
+  macrosoft-web:
     image: library/nginx:1.20.1
-    container_name: HalvonikWeb
+    container_name: MacrosoftWeb
     ports:
       - "8086:80"
     networks:
-      - halvonik-api
+      - macrosoft-api
     depends_on:
-      - halvonik-php
+      - macrosoft-php
     volumes:
       - ./src:/var/www/html
       - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
@@ -45,13 +45,12 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_DATABASE: test
-      MYSQL_USER: docker
-      MYSQL_PASSWORD: docker
-      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: databaza
+      MYSQL_USER: dukes
+      MYSQL_PASSWORD: dukes
     command: mysqld --innodb-flush-method=littlesync --innodb-use-native-aio=OFF --log_bin=ON --skip-innodb-file-per-table --server-id=1 --lower_case_table_names=1
     networks:
-      - halvonik-api
+      - macrosoft-api
 
 volumes:
   dev_db:

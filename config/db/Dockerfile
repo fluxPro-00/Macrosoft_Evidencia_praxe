@@ -10,9 +10,9 @@ RUN { \
 
 RUN { \
         echo '[client]'; \
-        echo 'user = docker'; \
-        echo 'password = docker'; \
-        echo 'host = localhost'; \
+        echo 'user = dukes'; \
+        echo 'password = dukes'; \
+        echo 'host = 127.0.0.1'; \
     } > /root/.mylogin.cnf && \
     chmod 600 /root/.mylogin.cnf
 
