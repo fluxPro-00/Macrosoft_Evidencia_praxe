@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class StudentiHasPraxe extends Model
 {
+    use HasFactory;
 	protected $table = 'studenti_has_praxe';
 	public $incrementing = false;
 	public $timestamps = false;

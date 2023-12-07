@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Administratori extends Model
 {
+    use HasFactory;
 	protected $table = 'administratori';
 	protected $primaryKey = 'idAdministratori';
 	public $timestamps = false;
@@ -23,7 +25,7 @@ class Administratori extends Model
 		'Pouzivatel_idPouzivatel'
 	];
 
-	public function pouzivatel()
+    public function pouzivatel()
 	{
 		return $this->belongsTo(Pouzivatel::class, 'Pouzivatel_idPouzivatel');
 	}

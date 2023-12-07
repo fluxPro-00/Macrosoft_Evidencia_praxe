@@ -48,6 +48,7 @@ services:
       MYSQL_DATABASE: databaza
       MYSQL_USER: dukes
       MYSQL_PASSWORD: dukes
+      MYSQL_ROOT_PASSWORD: dukes
     command: mysqld --innodb-flush-method=littlesync --innodb-use-native-aio=OFF --log_bin=ON --skip-innodb-file-per-table --server-id=1 --lower_case_table_names=1
     networks:
       - macrosoft-api

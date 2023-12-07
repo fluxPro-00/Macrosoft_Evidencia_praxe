@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Veduci extends Model
 {
+    use HasFactory;
 	protected $table = 'veduci';
 	protected $primaryKey = 'idVeduci';
 	public $timestamps = false;
