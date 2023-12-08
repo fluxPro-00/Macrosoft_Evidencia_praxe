@@ -13,7 +13,7 @@ class PracoviskaFactory extends Factory
     public function definition(): array
     {
         return [
-            'Nazov' => $this->faker->company,
+            'Nazov' =>substr($this->faker->company, 0,45 ),
             'Adresa' => substr($this->faker->address, 0,45 ),
             'Veduci_idVeduci' => function () {
                 return Veduci::pluck('idVeduci')->random();

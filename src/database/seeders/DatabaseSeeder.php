@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Administratoripracoviska;
+use App\Models\PersonalAccessToken;
 use App\Models\Studenti;
 use Illuminate\Database\Seeder;
 
@@ -34,5 +35,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentiSeeder::class);
         $this->call(StudentiHasPraxeSeeder::class);
         $this->call(ZastupcaSeeder::class);
+        $this->call(PersonalAccessTokenSeeder::class);
     }
 }
