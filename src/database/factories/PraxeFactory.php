@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Firmy;
 use App\Models\Praxe;
+use App\Models\Studijneprogramy;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PraxeFactory extends Factory
@@ -15,6 +16,9 @@ class PraxeFactory extends Factory
         return [
             'Firmy_idFirmy' => function () {
                 return Firmy::pluck('idFirmy')->random();
+            },
+            'StudijneProgramy_idStudijneProgramy' => function () {
+                return Studijneprogramy::pluck('idStudijneProgramy')->random();
             },
             'Pozícia' => substr($this->faker->jobTitle, 0,20 ),
             'Začiatok' => $this->faker->dateTimeThisYear,

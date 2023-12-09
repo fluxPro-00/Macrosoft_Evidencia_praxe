@@ -14,12 +14,14 @@ class Praxe extends Model
 
 	protected $casts = [
 		'Firmy_idFirmy' => 'int',
+        'StudijneProgramy_idStudijneProgramy' => 'int',
 		'Začiatok' => 'datetime',
 		'Koniec' => 'datetime'
 	];
 
 	protected $fillable = [
 		'Firmy_idFirmy',
+        'StudijneProgramy_idStudijneProgramy',
 		'Pozícia',
 		'Začiatok',
 		'Koniec',
@@ -27,11 +29,14 @@ class Praxe extends Model
 		'Hodnotenie'
 	];
 
-	public function firmy()
-	{
-		return $this->belongsTo(Firmy::class, 'Firmy_idFirmy');
-	}
-
+    public function firmy()
+    {
+        return $this->belongsTo(Firmy::class, 'Firmy_idFirmy');
+    }
+    public function studijneprogramy()
+    {
+        return $this->belongsTo(Studijneprogramy::class, 'StudijneProgramy_idStudijneProgramy');
+    }
 	public function archivovanes()
 	{
 		return $this->hasMany(Archivovane::class, 'Praxe_idPraxe');

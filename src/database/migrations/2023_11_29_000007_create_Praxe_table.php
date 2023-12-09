@@ -17,6 +17,7 @@ class CreatePraxeTable extends Migration
         Schema::create('Praxe', function (Blueprint $table) {
             $table->increments('idPraxe');
             $table->unsignedInteger('Firmy_idFirmy');
+            $table->unsignedInteger('Studijneprogramy_idStudijneProgramy');
             $table->string('Pozícia', 45);
             $table->dateTime('Začiatok');
             $table->dateTime('Koniec');
@@ -28,6 +29,10 @@ class CreatePraxeTable extends Migration
 
             $table->foreign('Firmy_idFirmy', 'fk_Praxe_Firmy1_idx')
                 ->references('idFirmy')->on('Firmy')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+            $table->foreign('StudijneProgramy_idStudijneProgramy', 'fk_Praxe_StudijneProgramy1_idx')
+                ->references('idStudijneProgramy')->on('StudijneProgramy')
                 ->onDelete('no action')
                 ->onUpdate('no action');
         });
