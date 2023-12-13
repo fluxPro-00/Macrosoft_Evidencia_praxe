@@ -22,8 +22,8 @@ class Firmy extends Model
 		return $this->hasMany(Praxe::class, 'Firmy_idFirmy');
 	}
 
-	public function zastupcacafirmies()
+	public function zastupcafirmies()
 	{
-		return $this->hasMany(Zastupcacafirmy::class, 'Firmy_idFirmy');
+		return $this->hasMany(Zastupcafirmy::class, 'Firmy_idFirmy');
 	}
 }

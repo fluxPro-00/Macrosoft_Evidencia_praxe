@@ -4,18 +4,18 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateZastupcacafirmyTable extends Migration
+class CreateZastupcafirmyTable extends Migration
 {
     /**
      * Run the migrations.
-     * @table ZastupcacaFirmy
+     * @table ZastupcaFirmy
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('ZastupcacaFirmy', function (Blueprint $table) {
-            $table->increments('idZastupcacaFirmy');
+        Schema::create('ZastupcaFirmy', function (Blueprint $table) {
+            $table->increments('idZastupcaFirmy');
             $table->string('Meno', 45);
             $table->string('Priezvisko', 45);
             $table->string('Email', 45);
@@ -28,12 +28,12 @@ class CreateZastupcacafirmyTable extends Migration
             $table->index('Pouzivatel_idPouzivatel');
 
 
-            $table->foreign('Firmy_idFirmy', 'fk_ZastupcacaFirmy_Firmy1_idx')
+            $table->foreign('Firmy_idFirmy', 'fk_ZastupcaFirmy_Firmy1_idx')
                 ->references('idFirmy')->on('Firmy')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
-            $table->foreign('Pouzivatel_idPouzivatel', 'fk_ZastupcacaFirmy_Pouzivatel1_idx')
+            $table->foreign('Pouzivatel_idPouzivatel', 'fk_ZastupcaFirmy_Pouzivatel1_idx')
                 ->references('idPouzivatel')->on('Pouzivatel')
                 ->onDelete('no action')
                 ->onUpdate('no action');
@@ -48,6 +48,6 @@ class CreateZastupcacafirmyTable extends Migration
      public function down()
      {
 
-        Schema::drop('ZastupcacaFirmy');
+        Schema::drop('ZastupcaFirmy');
     }
 }

@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Praxe;
+use App\Models\Pouzivatel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PraxeController extends Controller
+class PouzivatelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Praxe::all();
+        return Pouzivatel::all();
     }
 
     /**
@@ -29,13 +29,13 @@ class PraxeController extends Controller
      */
     public function show($id)
     {
-        return Praxe::find($id);
+        return Pouzivatel::find($id);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Praxe $praxe)
+    public function update(Request $request, Pouzivatel $pouzivatel)
     {
         //
     }
@@ -43,14 +43,8 @@ class PraxeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Praxe $praxe)
+    public function destroy(Pouzivatel $pouzivatel)
     {
         //
-    }
-
-    public function praxFromProgram($idProgram)
-    {
-        $praxeFromProgram = DB::table('praxe')->where('Studijneprogramy_idStudijneProgramy', $idProgram)->get();;
-        return $praxeFromProgram;
     }
 }
