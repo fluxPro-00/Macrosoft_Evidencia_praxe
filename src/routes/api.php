@@ -24,6 +24,7 @@ Route::controller(StudijneprogramyController::class)->group(function () {
 
 Route::controller(PraxeController::class)->group(function () {
     Route::get('/praxe', 'index');
+    Route::get('/praxe/{id}', 'show');
     Route::get('/studijneprogramy/{id}/praxe', 'praxFromProgram');
 });
 

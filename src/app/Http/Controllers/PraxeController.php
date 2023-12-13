@@ -27,9 +27,9 @@ class PraxeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Praxe $praxe)
+    public function show($id)
     {
-        //
+        return Praxe::find($id);
     }
 
     /**
