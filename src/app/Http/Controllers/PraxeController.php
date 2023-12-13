@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Studijneprogramy;
+use App\Models\Praxe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class StudijneprogramyController extends Controller
+class PraxeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Studijneprogramy::all();
+        return Praxe::all();
     }
 
     /**
@@ -27,15 +27,15 @@ class StudijneprogramyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(Praxe $praxe)
     {
-        return Studijneprogramy::find($id);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, StudijneprogramyController $studijneprogramy)
+    public function update(Request $request, Praxe $praxe)
     {
         //
     }
@@ -43,8 +43,14 @@ class StudijneprogramyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(StudijneprogramyController $studijneprogramy)
+    public function destroy(Praxe $praxe)
     {
         //
+    }
+
+    public function praxFromProgram($idProgram)
+    {
+        $praxeFromProgram = DB::table('praxe')->where('Studijneprogramy_idStudijneProgramy', $idProgram)->get();;
+        return $praxeFromProgram;
     }
 }
