@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Zastupcacafirmy;
+use App\Models\Zastupcafirmy;
 class ZastupcaSeeder extends Seeder
 {
     /**
@@ -12,6 +12,6 @@ class ZastupcaSeeder extends Seeder
      */
     public function run(): void
     {
-        Zastupcacafirmy::factory()->count(10)->create();
+        Zastupcafirmy::factory()->count(10)->create();
     }
 }

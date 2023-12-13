@@ -40,8 +40,8 @@ class Pouzivatel extends Model
 		return $this->hasMany(Veduci::class, 'Pouzivatel_idPouzivatel');
 	}
 
-	public function zastupcacafirmies()
+	public function zastupcafirmies()
 	{
-		return $this->hasMany(Zastupcacafirmy::class, 'Pouzivatel_idPouzivatel');
+		return $this->hasMany(Zastupcafirmy::class, 'Pouzivatel_idPouzivatel');
 	}
 }
