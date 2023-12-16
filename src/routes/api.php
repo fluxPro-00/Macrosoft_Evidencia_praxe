@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\FirmyController;
 use App\Http\Controllers\StudijneprogramyController;
 use App\Http\Controllers\PraxeController;
 use App\Http\Controllers\PouzivatelController;
@@ -18,6 +19,11 @@ use App\Http\Controllers\ZastupcafirmyController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::controller(FirmyController::class)->group(function () {
+    Route::get('/firmy', 'index');
+    Route::get('/firmy/{id}', 'show');
+});
 
 Route::controller(StudijneprogramyController::class)->group(function () {
     Route::get('/studijneprogramy', 'index');
