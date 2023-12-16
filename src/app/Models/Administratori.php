@@ -19,8 +19,6 @@ class Administratori extends Model
 	protected $fillable = [
 		'Meno',
 		'Priezvisko',
-		'Email',
-		'Heslo',
 		'Tel_cislo',
 		'Pouzivatel_idPouzivatel'
 	];

@@ -18,8 +18,6 @@ class CreateAdministratoriTable extends Migration
             $table->increments('idAdministratori');
             $table->string('Meno', 45);
             $table->string('Priezvisko', 45);
-            $table->string('Email', 45);
-            $table->string('Heslo', 45);
             $table->string('Tel_cislo', 45);
             $table->unsignedInteger('Pouzivatel_idPouzivatel');
             # Indexes

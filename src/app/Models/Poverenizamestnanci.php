@@ -20,8 +20,6 @@ class Poverenizamestnanci extends Model
 	protected $fillable = [
 		'Meno',
 		'Priezvisko',
-		'Email',
-		'Heslo',
 		'Tel_cislo',
 		'Pracoviska_idPracoviska',
 		'Pouzivatel_idPouzivatel'

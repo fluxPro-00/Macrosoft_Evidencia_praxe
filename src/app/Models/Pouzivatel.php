@@ -17,6 +17,8 @@ class Pouzivatel extends Model
 	];
 
 	protected $fillable = [
+        'Email',
+        'Heslo',
 		'Typ'
 	];
 

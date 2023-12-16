@@ -20,8 +20,6 @@ class Zastupcafirmy extends Model
 	protected $fillable = [
 		'Meno',
 		'Priezvisko',
-		'Email',
-		'Heslo',
 		'Tel_cislo',
 		'Firmy_idFirmy',
 		'Pouzivatel_idPouzivatel'
