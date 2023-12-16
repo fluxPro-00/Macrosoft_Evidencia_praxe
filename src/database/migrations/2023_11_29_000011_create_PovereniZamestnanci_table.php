@@ -18,8 +18,6 @@ class CreatePoverenizamestnanciTable extends Migration
             $table->increments('idPovereni');
             $table->string('Meno', 20);
             $table->string('Priezvisko', 20);
-            $table->string('Email', 45);
-            $table->string('Heslo', 45);
             $table->string('Tel_cislo', 45);
             $table->unsignedInteger('Pracoviska_idPracoviska');
             $table->unsignedInteger('Pouzivatel_idPouzivatel');

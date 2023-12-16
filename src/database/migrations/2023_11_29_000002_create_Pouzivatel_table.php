@@ -16,6 +16,8 @@ class CreatePouzivatelTable extends Migration
     {
         Schema::create('Pouzivatel', function (Blueprint $table) {
             $table->increments('idPouzivatel');
+            $table->string('Email', 45);
+            $table->string('Heslo', 45);
             $table->integer('Typ');
             # Indexes
         });

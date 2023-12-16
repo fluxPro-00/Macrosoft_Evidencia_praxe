@@ -11,6 +11,8 @@ class PouzivatelFactory extends Factory
     public function definition(): array
     {
         return [
+            'Email' => substr($this->faker->safeEmail, 0,45 ),
+            'Heslo' => $this->faker->unique()->password,
             'Typ' => $this->faker->randomElement([1, 2, 3]),
         ];
     }

@@ -20,8 +20,6 @@ class Studenti extends Model
 	protected $fillable = [
 		'Meno',
 		'Priezvisko',
-		'Email',
-		'Heslo',
 		'Tel_cislo',
 		'StudijneProgramy_idStudijneProgramy',
 		'Pouzivatel_idPouzivatel'

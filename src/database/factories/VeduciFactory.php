@@ -15,8 +15,6 @@ class VeduciFactory extends Factory
         return [
             'Meno' => $this->faker->firstName,
             'Priezvisko' => $this->faker->lastName,
-            'Email' => substr($this->faker->safeEmail, 0,45 ),
-            'Heslo' => $this->faker->unique()->password,
             'Tel_cislo' => substr($this->faker->address, 0,10 ),
             'Pouzivatel_idPouzivatel' => Pouzivatel::pluck('idPouzivatel')->random(),
         ];
