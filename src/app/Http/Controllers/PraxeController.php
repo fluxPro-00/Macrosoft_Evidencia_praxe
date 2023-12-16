@@ -29,7 +29,20 @@ class PraxeController extends Controller
      */
     public function show($id)
     {
-        return Praxe::find($id);
+        $prax = Praxe::find($id);
+        if ($prax === null) {
+            return response()->json(['Chyba' => 'Prax neexistuje'], 404);
+        }
+        return $prax;
+    }
+
+    public function stav($id)
+    {
+        $stav = Praxe::find($id);
+        if ($stav === null) {
+            return response()->json(['Chyba' => 'Prax neexistuje'], 404);
+        }
+        return $stav->only(['idPraxe', 'Stav']);
     }
 
     /**
@@ -50,7 +63,7 @@ class PraxeController extends Controller
 
     public function praxFromProgram($idProgram)
     {
-        $praxeFromProgram = DB::table('praxe')->where('Studijneprogramy_idStudijneProgramy', $idProgram)->get();;
+        $praxeFromProgram = DB::table('praxe')->where('Studijneprogramy_idStudijneProgramy', $idProgram)->get();
         return $praxeFromProgram;
     }
 }
