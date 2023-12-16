@@ -23,6 +23,7 @@ class CreatePraxeTable extends Migration
             $table->dateTime('Koniec');
             $table->string('Stav', 30);
             $table->string('Hodnotenie', 5);
+            $table->string('TypZmluvy', 45);
             # Indexes
             $table->index('Firmy_idFirmy');
 
