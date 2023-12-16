@@ -25,6 +25,7 @@ class PraxeFactory extends Factory
             'Koniec' => $this->faker->dateTimeThisYear,
             'Stav' => $this->faker->randomElement(['Schvalena', 'Neschvalena', 'Archivovana']),
             'Hodnotenie' => $this->faker->numberBetween(1, 5),
+            'TypZmluvy' => $this->faker->randomElement(['Dohoda o odbornej praxi študenta', 'Dohoda o brigádnickej práci študenta']),
         ];
     }
 }

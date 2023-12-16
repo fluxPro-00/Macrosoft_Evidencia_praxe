@@ -26,7 +26,8 @@ class Praxe extends Model
 		'Začiatok',
 		'Koniec',
 		'Stav',
-		'Hodnotenie'
+		'Hodnotenie',
+        'TypZmluvy'
 	];
 
     public function firmy()
