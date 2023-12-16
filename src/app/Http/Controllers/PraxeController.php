@@ -66,4 +66,14 @@ class PraxeController extends Controller
         $praxeFromProgram = DB::table('praxe')->where('Studijneprogramy_idStudijneProgramy', $idProgram)->get();
         return $praxeFromProgram;
     }
+
+    public function schvalene() {
+        $schvalene = DB::table('praxe')->where('Stav', 'Schvalena')->get();
+        return $schvalene;
+    }
+
+    public function archivovane() {
+        $archivovane = DB::table('praxe')->where('Stav', 'Archivovana')->get();
+        return $archivovane;
+    }
 }
