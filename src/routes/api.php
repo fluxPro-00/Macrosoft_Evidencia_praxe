@@ -23,6 +23,7 @@ use App\Http\Controllers\ZastupcafirmyController;
 Route::controller(FirmyController::class)->group(function () {
     Route::get('/firmy', 'index');
     Route::get('/firmy/{id}', 'show');
+    Route::post('/firmy', 'store');
 });
 
 Route::controller(StudijneprogramyController::class)->group(function () {

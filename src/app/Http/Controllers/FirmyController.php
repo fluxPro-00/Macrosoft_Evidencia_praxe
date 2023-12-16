@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Firmy;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class FirmyController extends Controller
 {
@@ -21,7 +22,29 @@ class FirmyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'Nazov' => 'required|string',
+            'Adresa' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['Chyba' => 'Zle zadané údaje'], 422);
+        }
+
+        $validatedData = $request->validate([
+            'Nazov' => 'required|string',
+            'Adresa' => 'required|string',
+        ]);
+
+        $najdiFirmu = Firmy::where('Nazov', $validatedData['Nazov'])->first();
+
+        if ($najdiFirmu) {
+            return response()->json(['Chyba' => 'Firma už existuje'], 409);
+        }
+
+        $firmy = Firmy::create($validatedData);
+
+        return response()->json(['Správa' => 'Firma bola pridaná do databázy'], 201);
     }
 
     /**
