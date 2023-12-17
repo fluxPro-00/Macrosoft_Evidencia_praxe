@@ -45,6 +45,15 @@ class PraxeController extends Controller
         return $stav->only(['idPraxe', 'Stav']);
     }
 
+    public function typ($id)
+    {
+        $stav = Praxe::find($id);
+        if ($stav === null) {
+            return response()->json(['Chyba' => 'Prax neexistuje'], 404);
+        }
+        return $stav->only(['idPraxe', 'TypZmluvy']);
+    }
+
     /**
      * Update the specified resource in storage.
      */

@@ -37,6 +37,7 @@ Route::controller(PraxeController::class)->group(function () {
     Route::get('/praxe/archivovane', 'archivovane');
     Route::get('/praxe/{id}', 'show');
     Route::get('/praxe/{id}/stav', 'stav');
+    Route::get('/praxe/{id}/typ', 'typ');
     Route::get('/studijneprogramy/{id}/praxe', 'praxFromProgram');
 });
 
