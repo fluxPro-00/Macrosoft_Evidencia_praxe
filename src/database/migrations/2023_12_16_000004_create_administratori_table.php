@@ -24,6 +24,7 @@ class CreateAdministratoriTable extends Migration
                 ->references('idPouzivatel')->on('pouzivatel')
                 ->onDelete('no action')
                 ->onUpdate('no action');
+            $table->softDeletes();
         });
     }
 

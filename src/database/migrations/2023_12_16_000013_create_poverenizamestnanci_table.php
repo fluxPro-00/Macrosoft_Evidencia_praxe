@@ -21,6 +21,7 @@ class CreatePoverenizamestnanciTable extends Migration
             # Indexes
             $table->index('pracoviska_idPracoviska');
             $table->index('pouzivatel_idPouzivatel');
+            $table->softDeletes();
 
             $table->foreign('pracoviska_idPracoviska', 'fk_poverenizamestnanci_pracoviska1_idx')
                 ->references('idPracoviska')->on('pracoviska')

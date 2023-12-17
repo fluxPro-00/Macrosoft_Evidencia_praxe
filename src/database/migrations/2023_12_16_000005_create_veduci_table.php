@@ -19,6 +19,7 @@ class CreateVeduciTable extends Migration
             $table->unsignedInteger('pouzivatel_idPouzivatel');
             # Indexes
             $table->index('pouzivatel_idPouzivatel');
+            $table->softDeletes();
 
             $table->foreign('pouzivatel_idPouzivatel', 'fk_veduci_pouzivatel1_idx')
                 ->references('idPouzivatel')->on('pouzivatel')

@@ -18,6 +18,7 @@ class CreateStudijneprogramyTable extends Migration
             $table->increments('idStudijneProgramy');
             $table->string('Nazov', 45);
             $table->string('Skratka', 45);
+            $table->softDeletes();
         });
     }
 

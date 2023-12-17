@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -77,6 +78,14 @@ Route::controller(ZastupcafirmyController::class)->group(function () {
     Route::get('/zastupcafirmy', 'index');
     Route::post('/zastupcafirmy', 'store');
     Route::get('/zastupcafirmy/{id}', 'show');
+});
+
+Route::controller(StudentiController::class)->group(function () {
+    Route::get('/studenti', 'index');
+    Route::post('/studenti', 'store');
+    Route::get('/studenti/{id}', 'show');
+    Route::delete('/studenti/{id}', 'destroy');
+    Route::put('/studenti/{id}', 'update');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

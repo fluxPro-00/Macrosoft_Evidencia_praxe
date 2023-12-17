@@ -18,6 +18,7 @@ class CreateFirmyTable extends Migration
             $table->increments('idFirmy');
             $table->string('Nazov', 45);
             $table->string('Adresa', 45);
+            $table->softDeletes();
         });
     }
 
