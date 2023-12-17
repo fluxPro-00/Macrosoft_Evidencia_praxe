@@ -7,6 +7,7 @@ use App\Http\Controllers\FirmyController;
 use App\Http\Controllers\StudijneprogramyController;
 use App\Http\Controllers\PraxeController;
 use App\Http\Controllers\PouzivatelController;
+use App\Http\Controllers\PoverenizamestnanciController;
 use App\Http\Controllers\ReportpracoviskoController;
 use App\Http\Controllers\SpatnavazbazastupcaController;
 use App\Http\Controllers\ZastupcafirmyController;
@@ -49,6 +50,14 @@ Route::controller(PouzivatelController::class)->group(function () {
     Route::get('/pouzivatel', 'index');
     Route::get('/pouzivatel/{id}', 'show');
 });
+
+Route::controller(PoverenizamestnanciController::class)->group(function () {
+    Route::get('/poverenizamestnanci', 'index');
+    Route::get('/poverenizamestnanci/{id}', 'show');
+    Route::put('/poverenizamestnanci/{id}', 'update');
+    Route::post('/poverenizamestnanci', 'store');
+});
+
 Route::controller(ReportpracoviskoController::class)->group(function () {
     Route::get('/pracovisko/report', 'index');
     Route::get('/pracovisko/report/{id}', 'show');
