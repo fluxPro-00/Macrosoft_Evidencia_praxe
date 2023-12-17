@@ -54,6 +54,11 @@ class PraxeController extends Controller
         return $stav->only(['idPraxe', 'TypZmluvy']);
     }
 
+    public function studenti($id)
+    {
+        return Praxe::find($id)->studentis()->get();
+    }
+
     /**
      * Update the specified resource in storage.
      */
