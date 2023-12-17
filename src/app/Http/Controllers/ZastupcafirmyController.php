@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Zastupcafirmy;
+use App\Models\Pouzivatel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ZastupcafirmyController extends Controller
 {
@@ -21,20 +23,42 @@ class ZastupcafirmyController extends Controller
      */
     public function store(Request $request)
     {
-        $pouzivatelData['Typ'] = 3;
-        $pouzivatelId = DB::table('pouzivatel')->insertGetId($pouzivatelData);
-
-        $validatedData = $request->validate([
+        $validator = Validator::make($request->all(), [
             'Meno' => 'required',
             'Priezvisko' => 'required',
             'Email' => 'required',
             'Heslo' => 'required',
             'Tel_cislo' => 'required',
-            'Firmy_idFirmy' => 'required'
+            'firmy_idFirmy' => 'required',
         ]);
-        $validatedData['Pouzivatel_idPouzivatel'] = $pouzivatelId;
 
-        return Zastupcafirmy::create($validatedData);
+        if ($validator->fails()) {
+            return response()->json(['Chyba' => 'Zle zadané údaje'], 422);
+        }
+
+        $pouzivatelData = $request->validate([
+            'Meno' => 'required',
+            'Priezvisko' => 'required',
+            'Email' => 'required',
+            'Heslo' => 'required',
+            'Tel_cislo' => 'required',
+        ]);
+        $pouzivatelData['Typ'] = 3;
+
+        $najdiPouzivatela = Pouzivatel::where('Email', $pouzivatelData['Email'])->first();
+
+        if ($najdiPouzivatela) {
+            return response()->json(['Chyba' => 'Používateľ už existuje'], 409);
+        }
+
+        $pouzivatelId = DB::table('pouzivatel')->insertGetId($pouzivatelData);
+
+        $zastupcaData = $request->validate([
+            'firmy_idFirmy' => 'required'
+        ]);
+        $zastupcaData['pouzivatel_idPouzivatel'] = $pouzivatelId;
+
+        return Zastupcafirmy::create($zastupcaData);
     }
 
     /**

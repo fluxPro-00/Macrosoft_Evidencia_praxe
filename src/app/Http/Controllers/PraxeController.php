@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Praxe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class PraxeController extends Controller
 {
