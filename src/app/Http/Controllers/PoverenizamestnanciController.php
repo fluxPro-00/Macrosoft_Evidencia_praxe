@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Zastupcafirmy;
+use App\Models\Poverenizamestnanci;
 use App\Models\Pouzivatel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class ZastupcafirmyController extends Controller
+class PoverenizamestnanciController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Zastupcafirmy::all();
+        return Poverenizamestnanci::all();
     }
 
     /**
@@ -29,7 +29,7 @@ class ZastupcafirmyController extends Controller
             'Email' => 'required',
             'Heslo' => 'required',
             'Tel_cislo' => 'required',
-            'firmy_idFirmy' => 'required',
+            'pracoviska_idPracoviska' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -43,7 +43,7 @@ class ZastupcafirmyController extends Controller
             'Heslo' => 'required',
             'Tel_cislo' => 'required',
         ]);
-        $pouzivatelData['Typ'] = 2;
+        $pouzivatelData['Typ'] = 3;
 
         $najdiPouzivatela = Pouzivatel::where('Email', $pouzivatelData['Email'])->first();
 
@@ -53,12 +53,12 @@ class ZastupcafirmyController extends Controller
 
         $pouzivatelId = DB::table('pouzivatel')->insertGetId($pouzivatelData);
 
-        $zastupcaData = $request->validate([
-            'firmy_idFirmy' => 'required'
+        $zamestnanecData = $request->validate([
+            'pracoviska_idPracoviska' => 'required'
         ]);
-        $zastupcaData['pouzivatel_idPouzivatel'] = $pouzivatelId;
+        $zamestnanecData['pouzivatel_idPouzivatel'] = $pouzivatelId;
 
-        return Zastupcafirmy::create($zastupcaData);
+        return Poverenizamestnanci::create($zamestnanecData);
     }
 
     /**
@@ -66,25 +66,40 @@ class ZastupcafirmyController extends Controller
      */
     public function show($id)
     {
-        $zastupcafirmy = Zastupcafirmy::find($id);
-        if ($zastupcafirmy === null) {
-            return response()->json(['Chyba' => 'Zástupca firmy neexistuje'], 404);
+        $poverenyzamestnanec = Poverenizamestnanci::find($id);
+        if ($poverenyzamestnanec === null) {
+            return response()->json(['Chyba' => 'Poverený zamestnanec neexistuje'], 404);
         }
-        return $zastupcafirmy;
+        return $poverenyzamestnanec;
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Zastupcafirmy $zastupcafirmy)
+    public function update(Request $request, $id)
     {
-        //
+        $poverenyzamestnanec = Poverenizamestnanci::find($id);
+        if ($poverenyzamestnanec === null) {
+            return response()->json(['Chyba' => 'Poverený zamestnanec neexistuje'], 404);
+        }
+
+        $requestData = $request->all();
+
+        foreach ($requestData as $key => $value) {
+            if ($poverenyzamestnanec->isFillable($key)) {
+                $poverenyzamestnanec->{$key} = $value;
+            }
+        }
+
+        $poverenyzamestnanec->save();
+
+        return response()->json(['Správa' => 'Poverený zamestnanec bol aktualizovaný', 'data' => $poverenyzamestnanec->fresh()], 201);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Zastupcafirmy $zastupcafirmy)
+    public function destroy(Poverenizamestnanci $poverenizamestnanci)
     {
         //
     }
