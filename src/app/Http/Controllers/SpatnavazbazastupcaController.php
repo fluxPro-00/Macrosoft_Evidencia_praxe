@@ -22,7 +22,27 @@ class SpatnavazbazastupcaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'Obsah' => 'required',
+            'zastupcafirmy_idZastupcaFirmy' => 'required',
+            'veduci_idVeduci' => 'required',
+            'praxe_idPraxe' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['Chyba' => 'Zle zadané údaje'], 422);
+        }
+
+        $validatedData = $request->validate([
+            'Obsah' => 'required|string',
+            'zastupcafirmy_idZastupcaFirmy' => 'required|int',
+            'veduci_idVeduci' => 'required|int',
+            'praxe_idPraxe' => 'required|int',
+        ]);
+
+        $spatnavazba = Spatnavazbazastupca::create($validatedData);
+
+        return response()->json(['Správa' => 'Spätná väzba bola pridaná do databázy'], 201);
     }
 
     /**

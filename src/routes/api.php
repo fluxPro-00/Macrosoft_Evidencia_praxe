@@ -68,6 +68,7 @@ Route::controller(ReportpracoviskoController::class)->group(function () {
 
 Route::controller(SpatnavazbazastupcaController::class)->group(function () {
     Route::get('/zastupcafirmy/spatnavazba', 'index');
+    Route::post('/zastupcafirmy/spatnavazba', 'store');
     Route::get('/zastupcafirmy/spatnavazba/{id}', 'show');
     Route::get('/zastupcafirmy/{id}/spatnavazba', 'zastupca');
 });
