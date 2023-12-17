@@ -7,6 +7,7 @@ use App\Http\Controllers\FirmyController;
 use App\Http\Controllers\StudijneprogramyController;
 use App\Http\Controllers\PraxeController;
 use App\Http\Controllers\PouzivatelController;
+use App\Http\Controllers\SpatnavazbazastupcaController;
 use App\Http\Controllers\ZastupcafirmyController;
 
 /*
@@ -45,6 +46,12 @@ Route::controller(PraxeController::class)->group(function () {
 Route::controller(PouzivatelController::class)->group(function () {
     Route::get('/pouzivatel', 'index');
     Route::get('/pouzivatel/{id}', 'show');
+});
+
+Route::controller(SpatnavazbazastupcaController::class)->group(function () {
+    Route::get('/zastupcafirmy/spatnavazba', 'index');
+    Route::get('/zastupcafirmy/spatnavazba/{id}', 'show');
+    Route::get('/zastupcafirmy/{id}/spatnavazba', 'zastupca');
 });
 
 Route::controller(ZastupcafirmyController::class)->group(function () {
