@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pouzivatel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class PouzivatelController extends Controller
 {
@@ -29,7 +30,11 @@ class PouzivatelController extends Controller
      */
     public function show($id)
     {
-        return Pouzivatel::find($id);
+        $pouzivatel = Pouzivatel::find($id);
+        if ($pouzivatel === null) {
+            return response()->json(['Chyba' => 'Používateľ neexistuje'], 404);
+        }
+        return $pouzivatel;
     }
 
     /**
