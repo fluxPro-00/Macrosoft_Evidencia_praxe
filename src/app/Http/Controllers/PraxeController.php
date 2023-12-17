@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Praxe;
+use App\Models\Archivovane;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -48,11 +49,11 @@ class PraxeController extends Controller
 
     public function typ($id)
     {
-        $stav = Praxe::find($id);
-        if ($stav === null) {
+        $typ = Praxe::find($id);
+        if ($typ === null) {
             return response()->json(['Chyba' => 'Prax neexistuje'], 404);
         }
-        return $stav->only(['idPraxe', 'TypZmluvy']);
+        return $typ->only(['idPraxe', 'TypZmluvy']);
     }
 
     public function studenti($id)
@@ -66,6 +67,23 @@ class PraxeController extends Controller
     public function update(Request $request, Praxe $praxe)
     {
         //
+    }
+
+    public function archivovat($id)
+    {
+        $praxe = Praxe::find($id);
+        if ($praxe === null) {
+            return response()->json(['Chyba' => 'Prax neexistuje'], 404);
+        }
+
+        if ($praxe['Stav'] == 'Archivovana') {
+            return response()->json(['Chyba' => 'Prax už je archivovaná'], 409);
+        }
+
+        $praxe->update(['Stav' => 'Archivovana']);
+        $archivovane = Archivovane::create(['Datum' => now()->toDateString(), 'praxe_idPraxe' => $id]);
+
+        return response()->json(['Správa' => 'Prax bola archivovaná'], 201);
     }
 
     /**
