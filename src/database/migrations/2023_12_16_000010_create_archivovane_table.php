@@ -20,6 +20,7 @@ class CreateArchivovaneTable extends Migration
             $table->unsignedInteger('praxe_idPraxe');
             # Indexes
             $table->index('praxe_idPraxe');
+            $table->softDeletes();
 
             $table->foreign('praxe_idPraxe', 'fk_archivovane_praxe1_idx')
                 ->references('idPraxe')->on('praxe')

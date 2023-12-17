@@ -20,6 +20,7 @@ class CreatePraxpracoviskaTable extends Migration
             # Indexes
             $table->index('pracoviska_idPracoviska');
             $table->index('praxe_idPraxe');
+            $table->softDeletes();
 
             $table->foreign('pracoviska_idPracoviska', 'fk_praxe_has_pracoviska_pracoviska1_idx')
                 ->references('idPracoviska')->on('pracoviska')

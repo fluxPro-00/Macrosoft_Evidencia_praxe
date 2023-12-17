@@ -27,6 +27,7 @@ class CreatePraxeTable extends Migration
             # Indexes
             $table->index('firmy_idFirmy');
             $table->index('studijneprogramy_idStudijneProgramy');
+            $table->softDeletes();
 
             $table->foreign('firmy_idFirmy', 'fk_praxe_firmy1_idx')
                 ->references('idFirmy')->on('firmy')

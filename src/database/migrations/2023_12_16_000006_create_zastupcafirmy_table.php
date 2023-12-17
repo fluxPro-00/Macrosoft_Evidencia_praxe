@@ -21,6 +21,7 @@ class CreateZastupcafirmyTable extends Migration
             # Indexes
             $table->index('firmy_idFirmy');
             $table->index('pouzivatel_idPouzivatel');
+            $table->softDeletes();
 
             $table->foreign('firmy_idFirmy', 'fk_zastupcafirmy_firmy1_idx')
                 ->references('idFirmy')->on('firmy')

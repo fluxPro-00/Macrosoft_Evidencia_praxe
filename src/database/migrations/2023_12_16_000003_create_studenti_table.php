@@ -26,6 +26,7 @@ class CreateStudentiTable extends Migration
             # Indexes
             $table->index('studijneprogramy_idStudijneProgramy');
             $table->index('pouzivatel_idPouzivatel');
+            $table->softDeletes();
 
             $table->foreign('studijneprogramy_idStudijneProgramy', 'fk_studenti_studijneprogramy1_idx')
                 ->references('idStudijneProgramy')->on('studijneprogramy')
@@ -47,5 +48,6 @@ class CreateStudentiTable extends Migration
      public function down()
      {
         Schema::drop('studenti');
+
      }
 }

@@ -20,6 +20,7 @@ class CreateStudentiHasPraxeTable extends Migration
             # Indexes
             $table->index('praxe_idPraxe');
             $table->index('studenti_idStudenti');
+            $table->softDeletes();
 
             $table->foreign('studenti_idStudenti', 'fk_studenti_has_praxe_studenti1_idx')
                 ->references('idStudenti')->on('studenti')

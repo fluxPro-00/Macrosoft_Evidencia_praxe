@@ -19,10 +19,11 @@ class CreatePracoviskaTable extends Migration
             $table->string('Nazov', 45);
             $table->string('Adresa', 45);
             $table->unsignedInteger('administratori_idAdministratori');
-	    $table->unsignedInteger('veduci_idVeduci');
+	        $table->unsignedInteger('veduci_idVeduci');
             # Indexes
             $table->index('administratori_idAdministratori');
             $table->index('veduci_idVeduci');
+            $table->softDeletes();
 
             $table->foreign('administratori_idAdministratori', 'fk_pracoviska_administratori1_idx')
                 ->references('idAdministratori')->on('administratori')

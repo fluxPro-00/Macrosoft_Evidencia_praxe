@@ -22,7 +22,7 @@ class CreateReportpracoviskoTable extends Migration
             # Indexes
             $table->index('pracoviska_idPracoviska');
             $table->index('veduci_idVeduci1');
-
+            $table->softDeletes();
             $table->foreign('pracoviska_idPracoviska', 'fk_reportpracovisko_pracoviska1_idx')
                 ->references('idPracoviska')->on('pracoviska')
                 ->onDelete('no action')

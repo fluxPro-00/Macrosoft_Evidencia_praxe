@@ -17,9 +17,10 @@ class CreateReportadminTable extends Migration
         Schema::create('reportadmin', function (Blueprint $table) {
             $table->increments('idreportadmin');
             $table->string('Obsah', 255);
-	    $table->unsignedInteger('administratori_idAdministratori');
+	        $table->unsignedInteger('administratori_idAdministratori');
             # Indexes
             $table->index('administratori_idAdministratori');
+            $table->softDeletes();
 
             $table->foreign('administratori_idAdministratori', 'fk_reportadmin_administratori1_idx')
                 ->references('idAdministratori')->on('administratori')

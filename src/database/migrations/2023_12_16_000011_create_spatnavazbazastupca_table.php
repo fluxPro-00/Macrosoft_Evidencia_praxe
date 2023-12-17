@@ -24,6 +24,7 @@ class CreateSpatnavazbazastupcaTable extends Migration
             $table->index('zastupcafirmy_idZastupcaFirmy');
             $table->index('veduci_idVeduci');
             $table->index('praxe_idPraxe');
+            $table->softDeletes();
 
             $table->foreign('zastupcafirmy_idZastupcaFirmy', 'fk_spatnavazba_zastupcafirmy1_idx')
                 ->references('idZastupcaFirmy')->on('zastupcafirmy')

@@ -22,6 +22,7 @@ class CreatePouzivatelTable extends Migration
             $table->string('Heslo', 45);
             $table->string('Tel_cislo', 10);
             $table->integer('Typ');
+            $table->softDeletes();
         });
     }
 
@@ -33,5 +34,6 @@ class CreatePouzivatelTable extends Migration
      public function down()
      {
         Schema::drop('pouzivatel');
+
      }
 }
