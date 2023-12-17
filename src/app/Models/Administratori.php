@@ -13,23 +13,25 @@ class Administratori extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'Pouzivatel_idPouzivatel' => 'int'
+		'pouzivatel_idPouzivatel' => 'int'
 	];
 
 	protected $fillable = [
-		'Meno',
-		'Priezvisko',
-		'Tel_cislo',
-		'Pouzivatel_idPouzivatel'
+		'pouzivatel_idPouzivatel'
 	];
 
-    public function pouzivatel()
+	public function pouzivatel()
 	{
-		return $this->belongsTo(Pouzivatel::class, 'Pouzivatel_idPouzivatel');
+		return $this->belongsTo(Pouzivatel::class, 'pouzivatel_idPouzivatel');
 	}
 
 	public function pracoviskas()
 	{
-		return $this->belongsToMany(Pracoviska::class, 'administratoripracoviska', 'Administratori_idAdministratori', 'Pracoviska_idPracoviska');
+		return $this->hasMany(Pracoviska::class, 'administratori_idAdministratori');
+	}
+
+	public function reportadmins()
+	{
+		return $this->hasMany(Reportadmin::class, 'administratori_idAdministratori');
 	}
 }

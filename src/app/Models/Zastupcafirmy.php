@@ -13,25 +13,27 @@ class Zastupcafirmy extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'Firmy_idFirmy' => 'int',
-		'Pouzivatel_idPouzivatel' => 'int'
+		'firmy_idFirmy' => 'int',
+		'pouzivatel_idPouzivatel' => 'int'
 	];
 
 	protected $fillable = [
-		'Meno',
-		'Priezvisko',
-		'Tel_cislo',
-		'Firmy_idFirmy',
-		'Pouzivatel_idPouzivatel'
+		'firmy_idFirmy',
+		'pouzivatel_idPouzivatel'
 	];
 
 	public function firmy()
 	{
-		return $this->belongsTo(Firmy::class, 'Firmy_idFirmy');
+		return $this->belongsTo(Firmy::class, 'firmy_idFirmy');
 	}
 
 	public function pouzivatel()
 	{
-		return $this->belongsTo(Pouzivatel::class, 'Pouzivatel_idPouzivatel');
+		return $this->belongsTo(Pouzivatel::class, 'pouzivatel_idPouzivatel');
+	}
+
+	public function spatnavazbazastupcas()
+	{
+		return $this->hasMany(Spatnavazbazastupca::class, 'zastupcafirmy_idZastupcaFirmy');
 	}
 }

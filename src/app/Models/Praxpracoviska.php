@@ -13,22 +13,22 @@ class Praxpracoviska extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'Praxe_idPraxe' => 'int',
-		'Pracoviska_idPracoviska' => 'int'
+		'praxe_idPraxe' => 'int',
+		'pracoviska_idPracoviska' => 'int'
 	];
 
 	protected $fillable = [
-		'Praxe_idPraxe',
-		'Pracoviska_idPracoviska'
+		'praxe_idPraxe',
+		'pracoviska_idPracoviska'
 	];
 
 	public function pracoviska()
 	{
-		return $this->belongsTo(Pracoviska::class, 'Pracoviska_idPracoviska');
+		return $this->belongsTo(Pracoviska::class, 'pracoviska_idPracoviska');
 	}
 
 	public function praxe()
 	{
-		return $this->belongsTo(Praxe::class, 'Praxe_idPraxe');
+		return $this->belongsTo(Praxe::class, 'praxe_idPraxe');
 	}
 }

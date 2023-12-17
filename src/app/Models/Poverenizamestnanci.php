@@ -13,25 +13,22 @@ class Poverenizamestnanci extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'Pracoviska_idPracoviska' => 'int',
-		'Pouzivatel_idPouzivatel' => 'int'
+		'pracoviska_idPracoviska' => 'int',
+		'pouzivatel_idPouzivatel' => 'int'
 	];
 
 	protected $fillable = [
-		'Meno',
-		'Priezvisko',
-		'Tel_cislo',
-		'Pracoviska_idPracoviska',
-		'Pouzivatel_idPouzivatel'
+		'pracoviska_idPracoviska',
+		'pouzivatel_idPouzivatel'
 	];
 
 	public function pouzivatel()
 	{
-		return $this->belongsTo(Pouzivatel::class, 'Pouzivatel_idPouzivatel');
+		return $this->belongsTo(Pouzivatel::class, 'pouzivatel_idPouzivatel');
 	}
 
 	public function pracoviska()
 	{
-		return $this->belongsTo(Pracoviska::class, 'Pracoviska_idPracoviska');
+		return $this->belongsTo(Pracoviska::class, 'pracoviska_idPracoviska');
 	}
 }

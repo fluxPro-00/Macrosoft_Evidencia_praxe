@@ -13,32 +13,39 @@ class Pracoviska extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'Veduci_idVeduci' => 'int'
+		'administratori_idAdministratori' => 'int',
+		'veduci_idVeduci' => 'int'
 	];
 
 	protected $fillable = [
 		'Nazov',
 		'Adresa',
-		'Veduci_idVeduci'
+		'administratori_idAdministratori',
+		'veduci_idVeduci'
 	];
+
+	public function administratori()
+	{
+		return $this->belongsTo(Administratori::class, 'administratori_idAdministratori');
+	}
 
 	public function veduci()
 	{
-		return $this->belongsTo(Veduci::class, 'Veduci_idVeduci');
-	}
-
-	public function administratoris()
-	{
-		return $this->belongsToMany(Administratori::class, 'administratoripracoviska', 'Pracoviska_idPracoviska', 'Administratori_idAdministratori');
+		return $this->belongsTo(Veduci::class, 'veduci_idVeduci');
 	}
 
 	public function poverenizamestnancis()
 	{
-		return $this->hasMany(Poverenizamestnanci::class, 'Pracoviska_idPracoviska');
+		return $this->hasMany(Poverenizamestnanci::class, 'pracoviska_idPracoviska');
 	}
 
 	public function praxpracoviska()
 	{
-		return $this->hasOne(Praxpracoviska::class, 'Pracoviska_idPracoviska');
+		return $this->hasOne(Praxpracoviska::class, 'pracoviska_idPracoviska');
+	}
+
+	public function reportpracoviskos()
+	{
+		return $this->hasMany(Reportpracovisko::class, 'pracoviska_idPracoviska');
 	}
 }
