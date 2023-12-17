@@ -17,33 +17,36 @@ class Pouzivatel extends Model
 	];
 
 	protected $fillable = [
-        'Email',
-        'Heslo',
+		'Meno',
+		'Priezvisko',
+		'Email',
+		'Heslo',
+		'Tel_cislo',
 		'Typ'
 	];
 
 	public function administratoris()
 	{
-		return $this->hasMany(Administratori::class, 'Pouzivatel_idPouzivatel');
+		return $this->hasMany(Administratori::class, 'pouzivatel_idPouzivatel');
 	}
 
 	public function poverenizamestnancis()
 	{
-		return $this->hasMany(Poverenizamestnanci::class, 'Pouzivatel_idPouzivatel');
+		return $this->hasMany(Poverenizamestnanci::class, 'pouzivatel_idPouzivatel');
 	}
 
 	public function studentis()
 	{
-		return $this->hasMany(Studenti::class, 'Pouzivatel_idPouzivatel');
+		return $this->hasMany(Studenti::class, 'pouzivatel_idPouzivatel');
 	}
 
 	public function veducis()
 	{
-		return $this->hasMany(Veduci::class, 'Pouzivatel_idPouzivatel');
+		return $this->hasMany(Veduci::class, 'pouzivatel_idPouzivatel');
 	}
 
 	public function zastupcafirmies()
 	{
-		return $this->hasMany(Zastupcafirmy::class, 'Pouzivatel_idPouzivatel');
+		return $this->hasMany(Zastupcafirmy::class, 'pouzivatel_idPouzivatel');
 	}
 }

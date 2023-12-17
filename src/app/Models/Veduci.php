@@ -13,23 +13,30 @@ class Veduci extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'Pouzivatel_idPouzivatel' => 'int'
+		'pouzivatel_idPouzivatel' => 'int'
 	];
 
 	protected $fillable = [
-		'Meno',
-		'Priezvisko',
-		'Tel_cislo',
-		'Pouzivatel_idPouzivatel'
+		'pouzivatel_idPouzivatel'
 	];
 
 	public function pouzivatel()
 	{
-		return $this->belongsTo(Pouzivatel::class, 'Pouzivatel_idPouzivatel');
+		return $this->belongsTo(Pouzivatel::class, 'pouzivatel_idPouzivatel');
 	}
 
 	public function pracoviskas()
 	{
-		return $this->hasMany(Pracoviska::class, 'Veduci_idVeduci');
+		return $this->hasMany(Pracoviska::class, 'veduci_idVeduci');
+	}
+
+	public function reportpracoviskos()
+	{
+		return $this->hasMany(Reportpracovisko::class, 'veduci_idVeduci1');
+	}
+
+	public function spatnavazbazastupcas()
+	{
+		return $this->hasMany(Spatnavazbazastupca::class, 'veduci_idVeduci');
 	}
 }

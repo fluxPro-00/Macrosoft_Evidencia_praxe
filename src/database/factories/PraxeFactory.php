@@ -20,8 +20,8 @@ class PraxeFactory extends Factory
             'StudijneProgramy_idStudijneProgramy' => function () {
                 return Studijneprogramy::pluck('idStudijneProgramy')->random();
             },
-            'Pozícia' => substr($this->faker->jobTitle, 0,20 ),
-            'Začiatok' => $this->faker->dateTimeThisYear,
+            'Pozicia' => substr($this->faker->jobTitle, 0,20 ),
+            'Zaciatok' => $this->faker->dateTimeThisYear,
             'Koniec' => $this->faker->dateTimeThisYear,
             'Stav' => $this->faker->randomElement(['Schvalena', 'Neschvalena', 'Archivovana']),
             'Hodnotenie' => $this->faker->numberBetween(1, 5),

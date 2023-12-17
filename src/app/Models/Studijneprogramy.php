@@ -17,8 +17,13 @@ class Studijneprogramy extends Model
 		'Skratka'
 	];
 
+	public function praxes()
+	{
+		return $this->hasMany(Praxe::class, 'studijneprogramy_idStudijneProgramy');
+	}
+
 	public function studentis()
 	{
-		return $this->hasMany(Studenti::class, 'StudijneProgramy_idStudijneProgramy');
+		return $this->hasMany(Studenti::class, 'studijneprogramy_idStudijneProgramy');
 	}
 }

@@ -13,43 +13,50 @@ class Praxe extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'Firmy_idFirmy' => 'int',
-        'StudijneProgramy_idStudijneProgramy' => 'int',
-		'Začiatok' => 'datetime',
-		'Koniec' => 'datetime'
+		'Zaciatok' => 'datetime',
+		'Koniec' => 'datetime',
+		'firmy_idFirmy' => 'int',
+		'studijneprogramy_idStudijneProgramy' => 'int'
 	];
 
 	protected $fillable = [
-		'Firmy_idFirmy',
-        'StudijneProgramy_idStudijneProgramy',
-		'Pozícia',
-		'Začiatok',
+		'Pozicia',
+		'Zaciatok',
 		'Koniec',
 		'Stav',
 		'Hodnotenie',
-        'TypZmluvy'
+		'TypZmluvy',
+		'firmy_idFirmy',
+		'studijneprogramy_idStudijneProgramy'
 	];
 
-    public function firmy()
-    {
-        return $this->belongsTo(Firmy::class, 'Firmy_idFirmy');
-    }
-    public function studijneprogramy()
-    {
-        return $this->belongsTo(Studijneprogramy::class, 'StudijneProgramy_idStudijneProgramy');
-    }
+	public function firmy()
+	{
+		return $this->belongsTo(Firmy::class, 'firmy_idFirmy');
+	}
+
+	public function studijneprogramy()
+	{
+		return $this->belongsTo(Studijneprogramy::class, 'studijneprogramy_idStudijneProgramy');
+	}
+
 	public function archivovanes()
 	{
-		return $this->hasMany(Archivovane::class, 'Praxe_idPraxe');
+		return $this->hasMany(Archivovane::class, 'praxe_idPraxe');
 	}
 
 	public function praxpracoviska()
 	{
-		return $this->hasOne(Praxpracoviska::class, 'Praxe_idPraxe');
+		return $this->hasOne(Praxpracoviska::class, 'praxe_idPraxe');
+	}
+
+	public function spatnavazbazastupcas()
+	{
+		return $this->hasMany(Spatnavazbazastupca::class, 'praxe_idPraxe');
 	}
 
 	public function studentis()
 	{
-		return $this->belongsToMany(Studenti::class, 'studenti_has_praxe', 'Praxe_idPraxe', 'Studenti_idStudenti');
+		return $this->belongsToMany(Studenti::class, 'studenti_has_praxe', 'praxe_idPraxe', 'studenti_idStudenti');
 	}
 }

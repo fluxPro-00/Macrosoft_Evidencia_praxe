@@ -14,9 +14,11 @@ class StudentiFactory extends Factory
     public function definition(): array
     {
         return [
-            'Meno' => $this->faker->firstName,
-            'Priezvisko' => $this->faker->lastName,
-            'Tel_cislo' => substr($this->faker->phoneNumber, 0,10 ),
+            'RokStudia' => $this->faker->randomElement([1, 2, 3, 4]),
+            'Stupen' => $this->faker->randomElement(['Magistersky', 'Bakalarsky']),
+            'AkademickyRok' => $this->faker->year,
+            'Osvedcenia' => substr($this->faker->text, 0,125 ),
+            'SchvalenyVykaz' => $this->faker->randomElement([0, 1]),
             'StudijneProgramy_idStudijneProgramy' => function () {
                 return Studijneprogramy::pluck('idStudijneProgramy')->random();
             },

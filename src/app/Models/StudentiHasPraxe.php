@@ -13,22 +13,22 @@ class StudentiHasPraxe extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'Studenti_idStudenti' => 'int',
-		'Praxe_idPraxe' => 'int'
+		'studenti_idStudenti' => 'int',
+		'praxe_idPraxe' => 'int'
 	];
 
 	protected $fillable = [
-		'Studenti_idStudenti',
-		'Praxe_idPraxe'
+		'studenti_idStudenti',
+		'praxe_idPraxe'
 	];
 
 	public function praxe()
 	{
-		return $this->belongsTo(Praxe::class, 'Praxe_idPraxe');
+		return $this->belongsTo(Praxe::class, 'praxe_idPraxe');
 	}
 
 	public function studenti()
 	{
-		return $this->belongsTo(Studenti::class, 'Studenti_idStudenti');
+		return $this->belongsTo(Studenti::class, 'studenti_idStudenti');
 	}
 }

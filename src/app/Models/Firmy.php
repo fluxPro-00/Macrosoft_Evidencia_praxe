@@ -19,11 +19,11 @@ class Firmy extends Model
 
 	public function praxes()
 	{
-		return $this->hasMany(Praxe::class, 'Firmy_idFirmy');
+		return $this->hasMany(Praxe::class, 'firmy_idFirmy');
 	}
 
 	public function zastupcafirmies()
 	{
-		return $this->hasMany(Zastupcafirmy::class, 'Firmy_idFirmy');
+		return $this->hasMany(Zastupcafirmy::class, 'firmy_idFirmy');
 	}
 }

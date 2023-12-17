@@ -14,9 +14,6 @@ class AdministratoriFactory extends Factory
     {
         return [
 
-            'Meno' => $this->faker->firstName,
-            'Priezvisko' => $this->faker->lastName,
-            'Tel_cislo' => substr($this->faker->phoneNumber, 0,10 ),
             'Pouzivatel_idPouzivatel' => Pouzivatel::pluck('idPouzivatel')->random(),
 
         ];

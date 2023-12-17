@@ -13,30 +13,34 @@ class Studenti extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'StudijneProgramy_idStudijneProgramy' => 'int',
-		'Pouzivatel_idPouzivatel' => 'int'
+		'RokStudia' => 'int',
+		'SchvalenyVykaz' => 'int',
+		'studijneprogramy_idStudijneProgramy' => 'int',
+		'pouzivatel_idPouzivatel' => 'int'
 	];
 
 	protected $fillable = [
-		'Meno',
-		'Priezvisko',
-		'Tel_cislo',
-		'StudijneProgramy_idStudijneProgramy',
-		'Pouzivatel_idPouzivatel'
+		'RokStudia',
+		'Stupen',
+		'AkademickyRok',
+		'Osvedcenia',
+		'SchvalenyVykaz',
+		'studijneprogramy_idStudijneProgramy',
+		'pouzivatel_idPouzivatel'
 	];
 
 	public function pouzivatel()
 	{
-		return $this->belongsTo(Pouzivatel::class, 'Pouzivatel_idPouzivatel');
+		return $this->belongsTo(Pouzivatel::class, 'pouzivatel_idPouzivatel');
 	}
 
 	public function studijneprogramy()
 	{
-		return $this->belongsTo(Studijneprogramy::class, 'StudijneProgramy_idStudijneProgramy');
+		return $this->belongsTo(Studijneprogramy::class, 'studijneprogramy_idStudijneProgramy');
 	}
 
 	public function praxes()
 	{
-		return $this->belongsToMany(Praxe::class, 'studenti_has_praxe', 'Studenti_idStudenti', 'Praxe_idPraxe');
+		return $this->belongsToMany(Praxe::class, 'studenti_has_praxe', 'studenti_idStudenti', 'praxe_idPraxe');
 	}
 }
