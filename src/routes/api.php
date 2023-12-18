@@ -94,6 +94,7 @@ Route::controller(StudentiController::class)->group(function () {
     Route::delete('/studenti/{id}', 'destroy');
     Route::put('/studenti/{id}', 'update');
     Route::get('/studenti/osvedcenia', 'osvedcenia');
+    Route::put('/studenti/{id}/updateSchvalenyVykaz', 'updateSchvalenyVykaz');
 });
 
 Route::controller(VeduciController::class)->group(function () {
