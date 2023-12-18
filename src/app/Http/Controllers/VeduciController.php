@@ -2,27 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Studenti;
 use App\Models\Pouzivatel;
+use App\Models\Veduci;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class StudentiController extends Controller
+class VeduciController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Studenti::all();
-    }
-
-    public function osvedcenia()
-    {
-        $studenti = DB::table('studenti')->select(['idStudenti', 'Osvedcenia'])->get();
-
-        return $studenti;
+        return Veduci::all();
     }
 
     /**
@@ -36,12 +29,6 @@ class StudentiController extends Controller
             'Email' => 'required',
             'Heslo' => 'required',
             'Tel_cislo' => 'required',
-            'RokStudia' => 'required',
-            'Stupen' => 'required',
-            'AkademickyRok' => 'required',
-            'Osvedcenia' => 'required',
-            'SchvalenyVykaz' => 'required',
-            'studijneprogramy_idStudijneProgramy' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -55,7 +42,7 @@ class StudentiController extends Controller
             'Heslo' => 'required',
             'Tel_cislo' => 'required',
         ]);
-        $pouzivatelData['Typ'] = 1;
+        $pouzivatelData['Typ'] = 4;
 
         $najdiPouzivatela = Pouzivatel::where('Email', $pouzivatelData['Email'])->first();
 
@@ -65,44 +52,50 @@ class StudentiController extends Controller
 
         $pouzivatelId = DB::table('pouzivatel')->insertGetId($pouzivatelData);
 
-        $studentiData = $request->validate([
-            'RokStudia' => 'required',
-            'Stupen' => 'required',
-            'AkademickyRok' => 'required',
-            'Osvedcenia' => 'required',
-            'SchvalenyVykaz' => 'required',
-            'studijneprogramy_idStudijneProgramy' => 'required',
-        ]);
-        $studentiData['pouzivatel_idPouzivatel'] = $pouzivatelId;
+        $veduciData['pouzivatel_idPouzivatel'] = $pouzivatelId;
 
-        return Studenti::create($studentiData);
+        return Veduci::create($veduciData);
     }
 
+    /**
+     * Display the specified resource.
+     */
     public function show($id)
     {
-        return Studenti::find($id);
+        $veduci = Veduci::find($id);
+        if ($veduci === null) {
+            return response()->json(['Chyba' => 'Vedúci neexistuje'], 404);
+        }
+        return $veduci;
     }
 
-    public function destroy($id)
-    {
-        $student = Studenti::findOrFail($id);
-
-        $student->delete();
-    }
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, $id)
     {
-        $student = Studenti::findOrFail($id);
+        $veduci = Veduci::findOrFail($id);
 
         $requestData = $request->all();
 
         foreach ($requestData as $key => $value) {
-            if ($student->isFillable($key)) {
-                $student->{$key} = $value;
+            if ($veduci->isFillable($key)) {
+                $veduci->{$key} = $value;
             }
         }
 
-        $student->save();
+        $veduci->save();
 
-        return response()->json(['Správa' => 'Študent bol aktualizovaný', 'data' => $student->fresh()], 200);
+        return response()->json(['Správa' => 'Vedúci bol aktualizovaný', 'data' => $veduci->fresh()], 200);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
+    {
+        $veduci = Veduci::findOrFail($id);
+
+        $veduci->delete();
     }
 }

@@ -6,11 +6,13 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\FirmyController;
 use App\Http\Controllers\StudijneprogramyController;
+use App\Http\Controllers\PracoviskaController;
 use App\Http\Controllers\PraxeController;
 use App\Http\Controllers\PouzivatelController;
 use App\Http\Controllers\PoverenizamestnanciController;
 use App\Http\Controllers\ReportpracoviskoController;
 use App\Http\Controllers\SpatnavazbazastupcaController;
+use App\Http\Controllers\VeduciController;
 use App\Http\Controllers\ZastupcafirmyController;
 
 /*
@@ -26,13 +28,23 @@ use App\Http\Controllers\ZastupcafirmyController;
 
 Route::controller(FirmyController::class)->group(function () {
     Route::get('/firmy', 'index');
-    Route::get('/firmy/{id}', 'show');
     Route::post('/firmy', 'store');
+    Route::get('/firmy/{id}', 'show');
+    Route::put('/firmy/{id}', 'update');
+    Route::delete('/firmy/{id}', 'destroy');
 });
 
 Route::controller(StudijneprogramyController::class)->group(function () {
     Route::get('/studijneprogramy', 'index');
     Route::get('/studijneprogramy/{id}', 'show');
+});
+
+Route::controller(PracoviskaController::class)->group(function () {
+    Route::get('/pracoviska', 'index');
+    Route::post('/pracoviska', 'store');
+    Route::get('/pracoviska/{id}', 'show');
+    Route::put('/pracoviska/{id}', 'update');
+    Route::delete('/pracoviska/{id}', 'destroy');
 });
 
 Route::controller(PraxeController::class)->group(function () {
@@ -54,9 +66,10 @@ Route::controller(PouzivatelController::class)->group(function () {
 
 Route::controller(PoverenizamestnanciController::class)->group(function () {
     Route::get('/poverenizamestnanci', 'index');
+    Route::post('/poverenizamestnanci', 'store');
     Route::get('/poverenizamestnanci/{id}', 'show');
     Route::put('/poverenizamestnanci/{id}', 'update');
-    Route::post('/poverenizamestnanci', 'store');
+    Route::delete('/poverenizamestnanci/{id}', 'destroy');
 });
 
 Route::controller(ReportpracoviskoController::class)->group(function () {
@@ -74,18 +87,27 @@ Route::controller(SpatnavazbazastupcaController::class)->group(function () {
     Route::get('/zastupcafirmy/{id}/spatnavazba', 'zastupca');
 });
 
-Route::controller(ZastupcafirmyController::class)->group(function () {
-    Route::get('/zastupcafirmy', 'index');
-    Route::post('/zastupcafirmy', 'store');
-    Route::get('/zastupcafirmy/{id}', 'show');
-});
-
 Route::controller(StudentiController::class)->group(function () {
     Route::get('/studenti', 'index');
     Route::post('/studenti', 'store');
     Route::get('/studenti/{id}', 'show');
     Route::delete('/studenti/{id}', 'destroy');
     Route::put('/studenti/{id}', 'update');
+    Route::get('/studenti/osvedcenia', 'osvedcenia');
+});
+
+Route::controller(VeduciController::class)->group(function () {
+    Route::get('/veduci', 'index');
+    Route::post('/veduci', 'store');
+    Route::get('/veduci/{id}', 'show');
+    Route::put('/veduci/{id}', 'update');
+    Route::delete('/veduci/{id}', 'destroy');
+});
+
+Route::controller(ZastupcafirmyController::class)->group(function () {
+    Route::get('/zastupcafirmy', 'index');
+    Route::post('/zastupcafirmy', 'store');
+    Route::get('/zastupcafirmy/{id}', 'show');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

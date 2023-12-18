@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Firmy;
 use App\Models\Poverenizamestnanci;
 use App\Models\Pouzivatel;
 use Illuminate\Http\Request;
@@ -93,14 +94,16 @@ class PoverenizamestnanciController extends Controller
 
         $poverenyzamestnanec->save();
 
-        return response()->json(['Správa' => 'Poverený zamestnanec bol aktualizovaný', 'data' => $poverenyzamestnanec->fresh()], 201);
+        return response()->json(['Správa' => 'Poverený zamestnanec bol aktualizovaný', 'data' => $poverenyzamestnanec->fresh()], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Poverenizamestnanci $poverenizamestnanci)
+    public function destroy($id)
     {
-        //
+        $poverenyzamestnanec = Firmy::findOrFail($id);
+
+        $poverenyzamestnanec->delete();
     }
 }
