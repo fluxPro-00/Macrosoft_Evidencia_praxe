@@ -96,6 +96,6 @@ class StudentiController extends Controller
 
         $student->save();
 
-        return response()->json(['Správa' => 'Poverený zamestnanec bol aktualizovaný', 'data' => $student->fresh()], 204);
+        return response()->json(['Správa' => 'Poverený zamestnanec bol aktualizovaný', 'data' => $student->fresh()], 200);
     }
 }

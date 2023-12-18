@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Firmy;
+use App\Models\Pracoviska;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class FirmyController extends Controller
+class PracoviskaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Firmy::all();
+        return Pracoviska::all();
     }
 
     /**
@@ -25,6 +25,8 @@ class FirmyController extends Controller
         $validator = Validator::make($request->all(), [
             'Nazov' => 'required|string',
             'Adresa' => 'required|string',
+            'administratori_idAdministratori' => 'required|int',
+            'veduci_idVeduci' => 'required|int',
         ]);
 
         if ($validator->fails()) {
@@ -34,17 +36,19 @@ class FirmyController extends Controller
         $validatedData = $request->validate([
             'Nazov' => 'required|string',
             'Adresa' => 'required|string',
+            'administratori_idAdministratori' => 'required|int',
+            'veduci_idVeduci' => 'required|int',
         ]);
 
-        $najdiFirmu = Firmy::where('Nazov', $validatedData['Nazov'])->first();
+        $najdiPracovisko = Pracoviska::where('Nazov', $validatedData['Nazov'])->first();
 
-        if ($najdiFirmu) {
-            return response()->json(['Chyba' => 'Firma už existuje'], 409);
+        if ($najdiPracovisko) {
+            return response()->json(['Chyba' => 'Pracovisko už existuje'], 409);
         }
 
-        $firmy = Firmy::create($validatedData);
+        $pracovisko = Pracoviska::create($validatedData);
 
-        return response()->json(['Správa' => 'Firma bola pridaná do databázy'], 201);
+        return response()->json(['Správa' => 'Pracovisko bolo pridané do databázy'], 201);
     }
 
     /**
@@ -52,11 +56,11 @@ class FirmyController extends Controller
      */
     public function show($id)
     {
-        $firma = Firmy::find($id);
-        if ($firma === null) {
-            return response()->json(['Chyba' => 'Firma neexistuje'], 404);
+        $pracovisko = Pracoviska::find($id);
+        if ($pracovisko === null) {
+            return response()->json(['Chyba' => 'Pracovisko neexistuje'], 404);
         }
-        return $firma;
+        return $pracovisko;
     }
 
     /**
@@ -64,19 +68,19 @@ class FirmyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $firma = Firmy::findOrFail($id);
+        $pracovisko = Pracoviska::findOrFail($id);
 
         $requestData = $request->all();
 
         foreach ($requestData as $key => $value) {
-            if ($firma->isFillable($key)) {
-                $firma->{$key} = $value;
+            if ($pracovisko->isFillable($key)) {
+                $pracovisko->{$key} = $value;
             }
         }
 
-        $firma->save();
+        $pracovisko->save();
 
-        return response()->json(['Správa' => 'Firma bola aktualizovaná', 'data' => $firma->fresh()], 200);
+        return response()->json(['Správa' => 'Pracovisko bolo aktualizované', 'data' => $pracovisko->fresh()], 200);
     }
 
     /**
@@ -84,8 +88,8 @@ class FirmyController extends Controller
      */
     public function destroy($id)
     {
-        $firma = Firmy::findOrFail($id);
+        $pracovisko = Pracoviska::findOrFail($id);
 
-        $firma->delete();
+        $pracovisko->delete();
     }
 }

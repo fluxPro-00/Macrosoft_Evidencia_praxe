@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\FirmyController;
 use App\Http\Controllers\StudijneprogramyController;
+use App\Http\Controllers\PracoviskaController;
 use App\Http\Controllers\PraxeController;
 use App\Http\Controllers\PouzivatelController;
 use App\Http\Controllers\PoverenizamestnanciController;
@@ -35,6 +36,14 @@ Route::controller(FirmyController::class)->group(function () {
 Route::controller(StudijneprogramyController::class)->group(function () {
     Route::get('/studijneprogramy', 'index');
     Route::get('/studijneprogramy/{id}', 'show');
+});
+
+Route::controller(PracoviskaController::class)->group(function () {
+    Route::get('/pracoviska', 'index');
+    Route::post('/pracoviska', 'store');
+    Route::get('/pracoviska/{id}', 'show');
+    Route::put('/pracoviska/{id}', 'update');
+    Route::delete('/pracoviska/{id}', 'destroy');
 });
 
 Route::controller(PraxeController::class)->group(function () {
