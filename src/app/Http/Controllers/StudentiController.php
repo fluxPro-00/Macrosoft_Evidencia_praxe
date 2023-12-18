@@ -18,6 +18,13 @@ class StudentiController extends Controller
         return Studenti::all();
     }
 
+    public function osvedcenia()
+    {
+        $studenti = DB::table('studenti')->select(['idStudenti', 'Osvedcenia'])->get();
+
+        return $studenti;
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -96,6 +103,6 @@ class StudentiController extends Controller
 
         $student->save();
 
-        return response()->json(['Správa' => 'Poverený zamestnanec bol aktualizovaný', 'data' => $student->fresh()], 200);
+        return response()->json(['Správa' => 'Študent bol aktualizovaný', 'data' => $student->fresh()], 200);
     }
 }

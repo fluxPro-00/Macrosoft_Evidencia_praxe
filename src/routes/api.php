@@ -93,6 +93,7 @@ Route::controller(StudentiController::class)->group(function () {
     Route::get('/studenti/{id}', 'show');
     Route::delete('/studenti/{id}', 'destroy');
     Route::put('/studenti/{id}', 'update');
+    Route::get('/studenti/osvedcenia', 'osvedcenia');
 });
 
 Route::controller(VeduciController::class)->group(function () {
