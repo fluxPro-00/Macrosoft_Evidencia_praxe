@@ -12,6 +12,7 @@ use App\Http\Controllers\PouzivatelController;
 use App\Http\Controllers\PoverenizamestnanciController;
 use App\Http\Controllers\ReportpracoviskoController;
 use App\Http\Controllers\SpatnavazbazastupcaController;
+use App\Http\Controllers\VeduciController;
 use App\Http\Controllers\ZastupcafirmyController;
 
 /*
@@ -65,9 +66,10 @@ Route::controller(PouzivatelController::class)->group(function () {
 
 Route::controller(PoverenizamestnanciController::class)->group(function () {
     Route::get('/poverenizamestnanci', 'index');
+    Route::post('/poverenizamestnanci', 'store');
     Route::get('/poverenizamestnanci/{id}', 'show');
     Route::put('/poverenizamestnanci/{id}', 'update');
-    Route::post('/poverenizamestnanci', 'store');
+    Route::delete('/poverenizamestnanci/{id}', 'destroy');
 });
 
 Route::controller(ReportpracoviskoController::class)->group(function () {
@@ -91,6 +93,14 @@ Route::controller(StudentiController::class)->group(function () {
     Route::get('/studenti/{id}', 'show');
     Route::delete('/studenti/{id}', 'destroy');
     Route::put('/studenti/{id}', 'update');
+});
+
+Route::controller(VeduciController::class)->group(function () {
+    Route::get('/veduci', 'index');
+    Route::post('/veduci', 'store');
+    Route::get('/veduci/{id}', 'show');
+    Route::put('/veduci/{id}', 'update');
+    Route::delete('/veduci/{id}', 'destroy');
 });
 
 Route::controller(ZastupcafirmyController::class)->group(function () {

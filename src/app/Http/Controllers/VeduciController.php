@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Firmy;
-use App\Models\Poverenizamestnanci;
 use App\Models\Pouzivatel;
+use App\Models\Veduci;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class PoverenizamestnanciController extends Controller
+class VeduciController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Poverenizamestnanci::all();
+        return Veduci::all();
     }
 
     /**
@@ -30,7 +29,6 @@ class PoverenizamestnanciController extends Controller
             'Email' => 'required',
             'Heslo' => 'required',
             'Tel_cislo' => 'required',
-            'pracoviska_idPracoviska' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -44,7 +42,7 @@ class PoverenizamestnanciController extends Controller
             'Heslo' => 'required',
             'Tel_cislo' => 'required',
         ]);
-        $pouzivatelData['Typ'] = 3;
+        $pouzivatelData['Typ'] = 4;
 
         $najdiPouzivatela = Pouzivatel::where('Email', $pouzivatelData['Email'])->first();
 
@@ -54,12 +52,9 @@ class PoverenizamestnanciController extends Controller
 
         $pouzivatelId = DB::table('pouzivatel')->insertGetId($pouzivatelData);
 
-        $zamestnanecData = $request->validate([
-            'pracoviska_idPracoviska' => 'required'
-        ]);
-        $zamestnanecData['pouzivatel_idPouzivatel'] = $pouzivatelId;
+        $veduciData['pouzivatel_idPouzivatel'] = $pouzivatelId;
 
-        return Poverenizamestnanci::create($zamestnanecData);
+        return Veduci::create($veduciData);
     }
 
     /**
@@ -67,11 +62,11 @@ class PoverenizamestnanciController extends Controller
      */
     public function show($id)
     {
-        $poverenyzamestnanec = Poverenizamestnanci::find($id);
-        if ($poverenyzamestnanec === null) {
-            return response()->json(['Chyba' => 'Poverený zamestnanec neexistuje'], 404);
+        $veduci = Veduci::find($id);
+        if ($veduci === null) {
+            return response()->json(['Chyba' => 'Vedúci neexistuje'], 404);
         }
-        return $poverenyzamestnanec;
+        return $veduci;
     }
 
     /**
@@ -79,22 +74,19 @@ class PoverenizamestnanciController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $poverenyzamestnanec = Poverenizamestnanci::find($id);
-        if ($poverenyzamestnanec === null) {
-            return response()->json(['Chyba' => 'Poverený zamestnanec neexistuje'], 404);
-        }
+        $veduci = Veduci::findOrFail($id);
 
         $requestData = $request->all();
 
         foreach ($requestData as $key => $value) {
-            if ($poverenyzamestnanec->isFillable($key)) {
-                $poverenyzamestnanec->{$key} = $value;
+            if ($veduci->isFillable($key)) {
+                $veduci->{$key} = $value;
             }
         }
 
-        $poverenyzamestnanec->save();
+        $veduci->save();
 
-        return response()->json(['Správa' => 'Poverený zamestnanec bol aktualizovaný', 'data' => $poverenyzamestnanec->fresh()], 200);
+        return response()->json(['Správa' => 'Vedúci bol aktualizovaný', 'data' => $veduci->fresh()], 200);
     }
 
     /**
@@ -102,8 +94,8 @@ class PoverenizamestnanciController extends Controller
      */
     public function destroy($id)
     {
-        $poverenyzamestnanec = Firmy::findOrFail($id);
+        $veduci = Veduci::findOrFail($id);
 
-        $poverenyzamestnanec->delete();
+        $veduci->delete();
     }
 }
