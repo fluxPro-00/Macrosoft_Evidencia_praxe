@@ -57,6 +57,7 @@ Route::controller(PraxeController::class)->group(function () {
     Route::get('/praxe/{id}/archivovat', 'archivovat');
     Route::get('/praxe/{id}/studenti', 'studenti');
     Route::get('/studijneprogramy/{id}/praxe', 'praxFromProgram');
+    Route::put('/praxe/{id}/updateHodnotenie', 'updateHodnotenie');
 });
 
 Route::controller(PouzivatelController::class)->group(function () {
@@ -95,6 +96,7 @@ Route::controller(StudentiController::class)->group(function () {
     Route::put('/studenti/{id}', 'update');
     Route::get('/studenti/osvedcenia', 'osvedcenia');
     Route::put('/studenti/{id}/updateSchvalenyVykaz', 'updateSchvalenyVykaz');
+
 });
 
 Route::controller(VeduciController::class)->group(function () {

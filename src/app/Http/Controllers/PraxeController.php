@@ -109,4 +109,16 @@ class PraxeController extends Controller
         $archivovane = DB::table('praxe')->where('Stav', 'Archivovana')->get();
         return $archivovane;
     }
+    public function updateHodnotenie(Request $request, $id)
+    {
+        $praxe = Praxe::findOrFail($id);
+
+        $request->validate([
+            'Hodnotenie' => 'required|int', // Validate the incoming rating value
+        ]);
+
+        $praxe->update(['Hodnotenie' => $request->input('Hodnotenie')]);
+
+        return response()->json(['message' => 'Hodnotenie študenta bolo zmenené', 'data' => $praxe], 200);
+    }
 }

@@ -92,6 +92,7 @@ class StudentiController extends Controller
         return response()->json(['message' => 'Výkaz praxe bol schválený', 'data' => $student], 200);
     }
 
+
     public function destroy($id)
     {
         $student = Studenti::findOrFail($id);
@@ -114,4 +115,6 @@ class StudentiController extends Controller
 
         return response()->json(['Správa' => 'Študent bol aktualizovaný', 'data' => $student->fresh()], 200);
     }
+
+
 }
