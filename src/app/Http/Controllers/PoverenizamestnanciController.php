@@ -93,7 +93,7 @@ class PoverenizamestnanciController extends Controller
 
         $poverenyzamestnanec->save();
 
-        return response()->json(['Správa' => 'Poverený zamestnanec bol aktualizovaný', 'data' => $poverenyzamestnanec->fresh()], 201);
+        return response()->json(['Správa' => 'Poverený zamestnanec bol aktualizovaný', 'data' => $poverenyzamestnanec->fresh()], 204);
     }
 
     /**

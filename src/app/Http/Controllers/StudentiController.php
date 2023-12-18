@@ -81,7 +81,6 @@ class StudentiController extends Controller
         $student = Studenti::findOrFail($id);
 
         $student->delete();
-
     }
     public function update(Request $request, $id)
     {
@@ -90,12 +89,13 @@ class StudentiController extends Controller
         $requestData = $request->all();
 
         foreach ($requestData as $key => $value) {
-            // Check if the key is a valid fillable attribute
             if ($student->isFillable($key)) {
                 $student->{$key} = $value;
             }
         }
+
         $student->save();
 
+        return response()->json(['Správa' => 'Poverený zamestnanec bol aktualizovaný', 'data' => $student->fresh()], 204);
     }
 }

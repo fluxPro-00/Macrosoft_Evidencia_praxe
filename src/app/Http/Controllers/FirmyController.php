@@ -62,16 +62,30 @@ class FirmyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Firmy $firmy)
+    public function update(Request $request, $id)
     {
-        //
+        $firma = Firmy::findOrFail($id);
+
+        $requestData = $request->all();
+
+        foreach ($requestData as $key => $value) {
+            if ($firma->isFillable($key)) {
+                $firma->{$key} = $value;
+            }
+        }
+
+        $firma->save();
+
+        return response()->json(['Správa' => 'Firma bola aktualizovaná', 'data' => $firma->fresh()], 204);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Firmy $firmy)
+    public function destroy($id)
     {
-        //
+        $firma = Firmy::findOrFail($id);
+
+        $firma->delete();
     }
 }

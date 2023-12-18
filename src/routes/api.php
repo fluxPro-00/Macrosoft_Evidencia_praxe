@@ -26,8 +26,10 @@ use App\Http\Controllers\ZastupcafirmyController;
 
 Route::controller(FirmyController::class)->group(function () {
     Route::get('/firmy', 'index');
-    Route::get('/firmy/{id}', 'show');
     Route::post('/firmy', 'store');
+    Route::get('/firmy/{id}', 'show');
+    Route::put('/firmy/{id}', 'update');
+    Route::delete('/firmy/{id}', 'destroy');
 });
 
 Route::controller(StudijneprogramyController::class)->group(function () {
@@ -74,18 +76,18 @@ Route::controller(SpatnavazbazastupcaController::class)->group(function () {
     Route::get('/zastupcafirmy/{id}/spatnavazba', 'zastupca');
 });
 
-Route::controller(ZastupcafirmyController::class)->group(function () {
-    Route::get('/zastupcafirmy', 'index');
-    Route::post('/zastupcafirmy', 'store');
-    Route::get('/zastupcafirmy/{id}', 'show');
-});
-
 Route::controller(StudentiController::class)->group(function () {
     Route::get('/studenti', 'index');
     Route::post('/studenti', 'store');
     Route::get('/studenti/{id}', 'show');
     Route::delete('/studenti/{id}', 'destroy');
     Route::put('/studenti/{id}', 'update');
+});
+
+Route::controller(ZastupcafirmyController::class)->group(function () {
+    Route::get('/zastupcafirmy', 'index');
+    Route::post('/zastupcafirmy', 'store');
+    Route::get('/zastupcafirmy/{id}', 'show');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
