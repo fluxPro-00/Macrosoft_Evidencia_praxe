@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReportadminController;
 use App\Http\Controllers\StudentiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,7 @@ use App\Http\Controllers\ReportpracoviskoController;
 use App\Http\Controllers\SpatnavazbazastupcaController;
 use App\Http\Controllers\VeduciController;
 use App\Http\Controllers\ZastupcafirmyController;
+use const App\Models\Reportadmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +81,12 @@ Route::controller(ReportpracoviskoController::class)->group(function () {
     Route::get('/pracovisko/{idPracovisko}/report', 'indexForPracovisko');
     Route::get('/pracovisko/{idPracovisko}/report/{idReport}', 'showForPracovisko');
     Route::post('/pracovisko/report', 'store');
+});
+Route::controller(ReportadminController::class)->group(function () {
+    Route::get('/administratori/reportadmin', 'index');
+    Route::get('/administratori/{id}/reportadmin', 'admin');
+    Route::post('/administratori/reportadmin',  'store');
+    Route::get('/administratori/reportadmin/{id}',  'show');
 });
 
 Route::controller(SpatnavazbazastupcaController::class)->group(function () {

@@ -19,7 +19,7 @@ class CreatePouzivatelTable extends Migration
             $table->string('Meno', 45);
             $table->string('Priezvisko', 45);
             $table->string('Email', 45);
-            $table->string('Heslo', 45);
+            $table->string('Heslo', 255);
             $table->string('Tel_cislo', 10);
             $table->integer('Typ');
             $table->softDeletes();
