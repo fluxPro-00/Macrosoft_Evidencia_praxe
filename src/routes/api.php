@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\StudentiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FirmyController;
 use App\Http\Controllers\StudijneprogramyController;
 use App\Http\Controllers\PracoviskaController;
@@ -12,6 +12,7 @@ use App\Http\Controllers\PouzivatelController;
 use App\Http\Controllers\PoverenizamestnanciController;
 use App\Http\Controllers\ReportpracoviskoController;
 use App\Http\Controllers\SpatnavazbazastupcaController;
+use App\Http\Controllers\StudentiController;
 use App\Http\Controllers\VeduciController;
 use App\Http\Controllers\ZastupcafirmyController;
 
@@ -25,6 +26,8 @@ use App\Http\Controllers\ZastupcafirmyController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::controller(FirmyController::class)->group(function () {
     Route::get('/firmy', 'index');
@@ -99,7 +102,6 @@ Route::controller(StudentiController::class)->group(function () {
     Route::put('/studenti/{id}', 'update');
     Route::get('/studenti/osvedcenia', 'osvedcenia');
     Route::put('/studenti/{id}/updateSchvalenyVykaz', 'updateSchvalenyVykaz');
-
 });
 
 Route::controller(VeduciController::class)->group(function () {
