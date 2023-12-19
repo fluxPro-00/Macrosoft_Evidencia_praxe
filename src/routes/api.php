@@ -60,8 +60,11 @@ Route::controller(PraxeController::class)->group(function () {
 });
 
 Route::controller(PouzivatelController::class)->group(function () {
-    Route::get('/pouzivatel', 'index');
-    Route::get('/pouzivatel/{id}', 'show');
+    Route::get('pouzivatel', 'index');
+    Route::post('pouzivatel', 'store');
+    Route::get('pouzivatel/{id}', 'show');
+    Route::put('pouzivatel/{id}', 'update');
+    Route::delete('pouzivatel/{id}', 'destroy');
 });
 
 Route::controller(PoverenizamestnanciController::class)->group(function () {
